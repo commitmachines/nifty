@@ -7,6 +7,10 @@ module.exports = {
     publicPath: 'out/',
     filename: 'app.js'
   },
+  externals:{
+        fs:    "commonjs fs",
+      path:  "commonjs path"
+  },
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader'] },
