@@ -35,6 +35,7 @@
     "object-assign": "^4.0.1",
     "react": "^0.14.1",
     "react-dom": "^0.14.1",
+    "react-flex-layout": "^0.9.6",
     "react-photonkit": "^0.3.2"
   },
   "devDependencies": {
