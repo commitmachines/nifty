@@ -37,6 +37,10 @@ function onLoad(editor) {
   });
   console.log('fs', fs);
 }
+var onFlexResize = function() {
+  console.log('resize');
+  globalEditor.resize(true);
+}
 var tabItems = [];
 tabItems.push(
   <TabItem title="lol" eventKey="1" active={true}></TabItem>
@@ -66,7 +70,7 @@ ReactDom.render(
       <PaneGroup>
         <Sidebar />
        <flex.Layout>
-          <flex.Layout layoutHeight={600}>
+          <flex.Layout layoutHeight={300}>
           <Pane className="best-wrapper">
           <AceEditor
           mode="pgsql"
@@ -77,7 +81,7 @@ ReactDom.render(
           editorProps={{$blockScrolling: true}} />
         </Pane>
           </flex.Layout>
-          <flex.LayoutSplitter vertical/>
+          <flex.LayoutSplitter onResizing={onFlexResize} onResizeComplete={onFlexResize} vertical/>
           <flex.Layout layoutHeight='flex'>Column2</flex.Layout>
         </flex.Layout>
       </PaneGroup>
