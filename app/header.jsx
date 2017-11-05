@@ -2,18 +2,21 @@ import React from "react";
 import { Toolbar, Actionbar, Button, ButtonGroup } from "react-photonkit";
 
 class Header extends React.Component {
-  render() {
-    return (
-      <Toolbar title="epp">
-        <Actionbar>
-          <ButtonGroup>
+    render() {
+        /*
+        Action bar:
+            <Actionbar>
+            <ButtonGroup>
             <Button glyph="home" />
             <Button glyph="github" />
-          </ButtonGroup>
-        </Actionbar>
-      </Toolbar>
-    );
-  }
+            </ButtonGroup>
+            </Actionbar>
+        */
+        return (
+            <Toolbar title="epp">
+            </Toolbar>
+        );
+    }
 }
 
 export default Header;

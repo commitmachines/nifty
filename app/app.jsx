@@ -1,53 +1,30 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { Window, Content, PaneGroup ,Pane, TabGroup, TabItem } from "react-photonkit";
-
+import {FakeObjectDataListStore} from "./FakeObjectDataListStore.js";
 import Header from "./header.jsx"
 import Footer from "./footer.jsx";
 import Sidebar from "./sidebar.jsx"
-
-import brace from 'brace';
-import AceEditor from 'react-ace';
+import ResultTable from "./result-table.jsx"
+import TextEditor from "./TextEditor.jsx"
 
 import flex from 'react-flex-layout';
-
-
-
-import 'brace/mode/java';
-import 'brace/mode/pgsql';
-import 'brace/theme/github';
-import 'brace/theme/monokai';
+import 'fixed-data-table-2/dist/fixed-data-table.css';
 
 require('../index.scss');
-const fs = require('fs');
+import {Table, Column, Cell} from 'fixed-data-table-2';
 
-var globalEditor = null;
-function onLoad(editor) {
-  globalEditor = editor;
-  editor.setValue('hejsan', -1);
-  fs.readFile('/Users/d/src/schema/index.sql', 'utf8', function (err,data) {
-    if (err) {
-      return console.log(err);
-    }
-    editor.setValue(data, -1);
-    editor.setOptions({
-  fontFamily: "Menlo",
-  fontSize: "11pt"
-});
-  });
-  console.log('fs', fs);
-}
 var tabItems = [];
 tabItems.push(
-  <TabItem title="lol" eventKey="1" active={true}></TabItem>
+  <TabItem title="index.sql" eventKey="1" active={true}></TabItem>
 );
 tabItems.push(
-  <TabItem title="lolzors" eventKey="2" active={false}></TabItem>
+  <TabItem title="deposit.sql" eventKey="2" active={false}></TabItem>
 );
 var onTabSelect = function(eventKey) {
-  var fileName = '/Users/d/src/schema/index.sql';
+  var fileName = '/Users/rikard.javelind/git/trustly/schema/index.sql';
   if (eventKey == "2") {
-  fileName = '/Users/d/src/schema/public/functions/deposit.sql';
+  fileName = '/Users/rikard.javelind/git/trustly/schema/public/functions/deposit.sql';
   }
   fs.readFile(fileName, 'utf8', function (err,data) {
     if (err) {
@@ -57,28 +34,37 @@ var onTabSelect = function(eventKey) {
   });
 };
 var activeKey = "2";
+const rows = [
+  "first row",
+  "second row",
+  "third row"
+  // .... and more
+];
+
+// Custom cell implementation with special prop
+const MyCustomCell = ({ mySpecialProp }) =>
+  <Cell>
+    {mySpecialProp === "column2" ? "I'm column 2" : "I'm not column 2"}
+  </Cell>;
+
 ReactDom.render(
   <Window>
     <Header />
     <TabGroup onSelect={onTabSelect} activeKey={activeKey} children={tabItems}>
     </TabGroup>
-    <Content>
+    <Content class="no-select">
       <PaneGroup>
         <Sidebar />
        <flex.Layout>
-          <flex.Layout layoutHeight={600}>
+          <flex.Layout layoutHeight={500}>
           <Pane className="best-wrapper">
-          <AceEditor
-          mode="pgsql"
-          fontSize="25"
-          onLoad={onLoad}
-          theme="textmate"
-          name="best"
-          editorProps={{$blockScrolling: true}} />
+            <TextEditor></TextEditor>
         </Pane>
           </flex.Layout>
           <flex.LayoutSplitter vertical/>
-          <flex.Layout layoutHeight='flex'>Column2</flex.Layout>
+          <flex.Layout layoutHeight='flex'>
+            <ResultTable />
+          </flex.Layout>
         </flex.Layout>
       </PaneGroup>
     </Content>

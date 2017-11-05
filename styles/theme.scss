@@ -6,3 +6,38 @@
     height: 100% !important;
     width: 100% !important;
 }
+
+div.tab-group {
+    border-top: 1px solid #D3D3D3;
+    border-bottom: none;
+}
+div.tab-group a.tab-item {
+    background: #F6F7F8;
+    border: none;
+    font-family: "Menlo";
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 13px;
+    border-left: 1px solid #D3D3D3;
+    border-right: 1px solid #D3D3D3;
+    border-bottom: 1px solid #D3D3D3;
+}
+div.tab-group a.tab-item.active {
+    background: #fff;
+    border: none;
+}
+
+.public_fixedDataTableCell_cellContent {
+    padding: 4px;
+}
+.ace_gutter {
+    background: none !important;
+}
+.no-select
+{
+   user-select: none;
+   -o-user-select:none;
+   -moz-user-select: none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+}
